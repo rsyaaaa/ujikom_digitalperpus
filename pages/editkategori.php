@@ -8,7 +8,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-   Tambah Buku
+   Edit Kategori Buku
   </title>
   <!--     Fonts and icons     -->
   <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" /> -->
@@ -29,67 +29,45 @@
           <div class="card">
             <div class="card-header pb-0">
               <div class="d-flex align-items-center">
-                <p class="mb-0">TAMBAH BUKU</p>
+                <p class="mb-0">EDIT KATEGORI BUKU</p>
                 
               </div>
             </div>
             <?php
             include "../koneksi.php";
-                if (isset($_POST['tambahbuku'])){
-                  $judul =$_POST['judul'];
-                  $penulis =$_POST['penulis'];
-                  $penerbit=$_POST['penerbit'];
-                  $tahun_terbit=$_POST['tahun_terbit'];
-                 
-                  $insert =mysqli_query($conn, "INSERT INTO buku (judul, penulis, penerbit, tahun_terbit) VALUES ('$judul', '$penulis', '$penerbit', '$tahun_terbit')");
+                if (isset($_POST['editkategoribuku'])){
+                  $namakategori =$_POST['nama_kategori'];
+                  
+                  
+                  $insert =mysqli_query($conn, "UPDATE kategori_buku SET nama_kategori='$namakategori' WHERE id_kategori");
                   if($insert){
-                    echo '<script>alert("Buku Berhasil Ditambah!"); location.href="buku.php";</script>';
+                    echo '<script>alert("Kategori Buku Berhasil Dirubah!"); location.href="kategori.php";</script>';
                   }else{
-                  echo'<script>alert("Buku Gagal Ditambah!");</script>';
+                  echo'<script>alert("Kategori Buku gagal dirubah");</script>';
                 }
               }
-              ?>
-                  
-                 
-                 
-                  
-                  
-                  
-               
+                ?>
             <form method="post">
             <div class="card-body">
-              <!-- <p class="text-uppercase text-sm">User Information</p> -->
+              
+              <?php
+                            include "../koneksi.php";
+                            $no = 1;
+                             $sql ="SELECT * FROM kategori_buku";
+                             $query = mysqli_query($conn, $sql);
+         
+                             if ($buku =mysqli_fetch_array($query));
+                             ?>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label" >Judul Buku</label>
-                    <input class="form-control" type="text" name="judul">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label" >Penulis Buku</label>
-                    <input class="form-control" type="text" name="penulis">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Penerbit Buku</label>
-                    <input class="form-control" type="text"  name="penerbit">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Tahun Terbit</label>
-                    <input class="form-control" type="text"  name="tahun_terbit">
+                    <label for="example-text-input" class="form-control-label" >Nama Kategori</label>
+                    <input class="form-control" type="text" name="nama_kategori" value="<?php echo $buku['nama_kategori']; ?>">
                   </div>
                 </div>
                 
-
-                  </div>
-                </div>
                 <div class="text-center">
-                      <button type="submit" name='tambahbuku' class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">TAMBAH BUKU</button>
+                      <button type="submit" name='editkategoribuku' class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">EDIT KATEGORI BUKU</button>
                     </div>
               </div>
             </form>

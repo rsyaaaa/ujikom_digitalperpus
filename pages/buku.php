@@ -10,12 +10,12 @@
     Buku
   </title>
   <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" /> -->
   <!-- Nucleo Icons -->
   <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <!-- <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script> -->
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
@@ -26,7 +26,7 @@
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html " target="_blank">
+      <a class="navbar-brand m-0" href="" target="_blank">
         <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold">Perpustakaan Digital</span>
       </a>
@@ -43,7 +43,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="../pages/tables.php">
+          <a class="nav-link active" href="../pages/buku.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
             </div>
@@ -51,21 +51,22 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="../pages/peminjaman.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Peminjaman</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="?">
+          <a class="nav-link " href="kategori.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-app text-info text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Kategori</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link " href="">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Peminjaman</span>
+          </a>
+        </li>
+        
         <li class="nav-item">
           <a class="nav-link " href="../logout.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -117,7 +118,7 @@
               <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-bell cursor-pointer"></i>
               </a>
-              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+              <!-- <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                 <li class="mb-2">
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
@@ -184,7 +185,7 @@
                     </div>
                   </a>
                 </li>
-              </ul>
+              </ul> -->
             </li>
           </ul>
         </div>
@@ -207,6 +208,7 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Penulis</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Penerbit</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tahun Terbit</th>
+                      <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kategori Buku</th> -->
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
@@ -216,7 +218,10 @@
                              $sql ="SELECT * FROM buku";
                              $query = mysqli_query($conn, $sql);
          
-                             if ($buku =mysqli_fetch_array($query));
+                             if ($buku =mysqli_fetch_assoc($query)); 
+                            //  foreach ($buku as $key) {
+                            //   echo $key['judul'];
+                            //  }
                              ?>
                             
                             
@@ -241,13 +246,16 @@
                       <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold"><?php echo $buku['tahun_terbit']; ?></span>
                       </td>
+                      <!-- <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $buku['id_kategori']; ?></span>
+                      </td> -->
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="editbuku.php" type="button" class=" font-weight-bold text-xs btn btn-warning" data-toggle="tooltip" data-original-title="Edit user">
                           Edit
                         </a>
                       </td>
-                      <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                      <td class="">
+                        <a href="hapusbuku.php" type="button" class="font-weight-bold text-xs btn btn-danger" data-toggle="tooltip" data-original-title="Edit user">
                           Hapus
                         </a>
                       </td>
@@ -337,17 +345,7 @@
             <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
           </div>
         </div>
-        <a class="btn bg-gradient-dark w-100" href="https://www.creative-tim.com/product/argon-dashboard">Free Download</a>
-        <a class="btn btn-outline-dark w-100" href="https://www.creative-tim.com/learning-lab/bootstrap/license/argon-dashboard">View documentation</a>
-        <div class="w-100 text-center">
-          <a class="github-button" href="https://github.com/creativetimofficial/argon-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star creativetimofficial/argon-dashboard on GitHub">Star</a>
-          <h6 class="mt-3">Thank you for sharing!</h6>
-          <a href="https://twitter.com/intent/tweet?text=Check%20Argon%20Dashboard%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23bootstrap5&amp;url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fargon-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
-            <i class="fab fa-twitter me-1" aria-hidden="true"></i> Tweet
-          </a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/argon-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
-            <i class="fab fa-facebook-square me-1" aria-hidden="true"></i> Share
-          </a>
+        
         </div>
       </div>
     </div>
@@ -367,9 +365,9 @@
     }
   </script>
   <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- <script async defer src="https://buttons.github.io/buttons.js"></script> -->
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+  <!-- <script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script> -->
 </body>
 
 </html>
