@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -59,7 +60,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="">
+          <a class="nav-link " href="peminjaman.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
             </div>
@@ -85,9 +86,9 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Tables</li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Buku</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Tables</h6>
+          <h6 class="font-weight-bolder text-white mb-0">Buku</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -197,73 +198,68 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <a type="button" class="btn btn-outline-success" href="tambahbuku.php">TAMBAH BUKU</a>
+              <a type="button" class="btn btn-outline-success" href="TAMBAH/tambahbuku.php">TAMBAH BUKU</a>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Judul</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Penulis</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Penerbit</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tahun Terbit</th>
-                      <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kategori Buku</th> -->
-                      <th class="text-secondary opacity-7"></th>
-                    </tr>
-                  </thead>
-                  <?php
-                            include "../koneksi.php";
-                            $no = 1;
-                             $sql ="SELECT * FROM buku";
-                             $query = mysqli_query($conn, $sql);
-         
-                             if ($buku =mysqli_fetch_assoc($query)); 
-                            //  foreach ($buku as $key) {
-                            //   echo $key['judul'];
-                            //  }
-                             ?>
-                            
-                            
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          
-                          <div class="d-flex flex-column justify-content-center">
-                          <h6><?php echo $buku['judul']; ?> </h6>
-                            
-                          </div>
+              <table class="table align-items-center mb-0">
+    <thead>
+        <tr>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Judul</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Penulis</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Penerbit</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tahun Terbit</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kategori Buku</th>
+            <th class="text-secondary opacity-7"></th>
+        </tr>
+    </thead>
+    <?php
+    include "../koneksi.php";
+    
+    $no = 1;
+    $sql = "SELECT * FROM buku  LEFT JOIN kategori_buku on kategori_buku.id_kategori = buku.id_kategori ";
+    $query = mysqli_query($conn, $sql);
+
+    while ($buku = mysqli_fetch_assoc($query)) {
+    ?>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="d-flex px-2 py-1">
+                        <div class="d-flex flex-column justify-content-center">
+                            <h6><?php echo $buku['judul']; ?> </h6>
                         </div>
-                      </td>
-                      <td>
-                        <p class="text-xs font-weight-bold mb-0"><?php echo $buku['penulis']; ?></p>
-                       
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class=""><?php echo $buku['penerbit']; ?></span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo $buku['tahun_terbit']; ?></span>
-                      </td>
-                      <!-- <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo $buku['id_kategori']; ?></span>
-                      </td> -->
-                      <td class="align-middle">
-                        <a href="editbuku.php" type="button" class=" font-weight-bold text-xs btn btn-warning" data-toggle="tooltip" data-original-title="Edit user">
-                          Edit
-                        </a>
-                      </td>
-                      <td class="">
-                        <a href="hapusbuku.php" type="button" class="font-weight-bold text-xs btn btn-danger" data-toggle="tooltip" data-original-title="Edit user">
-                          Hapus
-                        </a>
-                      </td>
-                    </tr>
-                   
-                    
-                  </tbody>
-                </table>
+                    </div>
+                </td>
+                <td>
+                    <p class="text-xs font-weight-bold mb-0"><?php echo $buku['penulis']; ?></p>
+                </td>
+                <td class="align-middle text-center text-sm">
+                    <span class=""><?php echo $buku['penerbit']; ?></span>
+                </td>
+                <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold"><?php echo $buku['tahun_terbit']; ?></span>
+                </td>
+                <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold"><?php echo $buku['nama_kategori']; ?></span>
+                </td>
+                <td class="align-middle">
+                    <a href="../pages/EDIT/editbuku.php?id=<?php echo $buku['id_buku'] ?>" type="button" class=" font-weight-bold text-xs btn btn-warning" data-toggle="tooltip" data-original-title="Edit user">
+                        Edit
+                    </a>
+                </td>
+                <td class="">
+                    <a href="./pages/HAPUS/hapusbuku.php?id=<?php echo $buku['id_buku'] ?>" type="button" class="font-weight-bold text-xs btn btn-danger" data-toggle="tooltip" data-original-title="Edit user">
+                        Hapus
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    <?php
+    }
+    ?>
+</table>
+
               </div>
             </div>
           </div>

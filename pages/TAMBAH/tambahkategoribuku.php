@@ -5,10 +5,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <title>
-   Edit Kategori Buku
+   TAMBAH KATEGORI BUKU
   </title>
   <!--     Fonts and icons     -->
   <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" /> -->
@@ -19,7 +19,7 @@
   <!-- <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script> -->
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
-  <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+  <link id="pagestyle" href="../../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
 </aside>
   </div>
@@ -29,45 +29,42 @@
           <div class="card">
             <div class="card-header pb-0">
               <div class="d-flex align-items-center">
-                <p class="mb-0">EDIT KATEGORI BUKU</p>
+                <p class="mb-0">TAMBAH KATEGORI BUKU</p>
                 
               </div>
             </div>
             <?php
-            include "../koneksi.php";
-                if (isset($_POST['editkategoribuku'])){
-                  $namakategori =$_POST['nama_kategori'];
+            include "../../koneksi.php";
+                if (isset($_POST['tambahbuku'])){
+                  $kategori =$_POST['kategori'];
                   
                   
-                  $insert =mysqli_query($conn, "UPDATE kategori_buku SET nama_kategori='$namakategori' WHERE id_kategori");
+                  
+                  
+                  $insert =mysqli_query($conn, "INSERT INTO kategori_buku (nama_kategori) VALUES ('$kategori')");
                   if($insert){
-                    echo '<script>alert("Kategori Buku Berhasil Dirubah!"); location.href="kategori.php";</script>';
+                    echo '<script>alert("Kategori Buku Berhasil Ditambah!"); location.href="../kategori.php";</script>';
                   }else{
-                  echo'<script>alert("Kategori Buku gagal dirubah");</script>';
+                  echo'<script>alert("Kategori Buku Gagal Ditambah");</script>';
                 }
               }
                 ?>
             <form method="post">
             <div class="card-body">
-              
-              <?php
-                            include "../koneksi.php";
-                            $no = 1;
-                             $sql ="SELECT * FROM kategori_buku";
-                             $query = mysqli_query($conn, $sql);
-         
-                             if ($buku =mysqli_fetch_array($query));
-                             ?>
+              <!-- <p class="text-uppercase text-sm">User Information</p> -->
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label" >Nama Kategori</label>
-                    <input class="form-control" type="text" name="nama_kategori" value="<?php echo $buku['nama_kategori']; ?>">
+                    <input class="form-control" type="text" name="kategori">
+                  </div>
+                
+                
+
                   </div>
                 </div>
-                
                 <div class="text-center">
-                      <button type="submit" name='editkategoribuku' class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">EDIT KATEGORI BUKU</button>
+                      <button type="submit" name='tambahbuku' class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">TAMBAH KATEGORI BUKU</button>
                     </div>
               </div>
             </form>
@@ -170,7 +167,7 @@
   <!-- Github buttons -->
   <!-- <script async defer src="https://buttons.github.io/buttons.js"></script> -->
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+  <script src="../../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 </body>
 
 </html>

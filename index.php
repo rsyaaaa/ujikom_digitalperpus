@@ -7,6 +7,10 @@ if(!isset($_SESSION['user'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<?php
+$query = mysqli_query($conn, "SELECT * FROM user where id_user =".$_SESSION['user']['id_user']);
+$tampil =mysqli_fetch_array($query);
+?>
 
 <head>
   <meta charset="utf-8" />
@@ -93,7 +97,7 @@ if(!isset($_SESSION['user'])){
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
             <li class="breadcrumb-item text-sm text-white active" aria-current="page">Dashboard</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
+          <h6 class="font-weight-bolder text-white mb-0">Anda Login Sebagai<br> <?php echo $tampil['nama_lengkap'] ?></h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -101,9 +105,9 @@ if(!isset($_SESSION['user'])){
           </div>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
+              <a href="./pages/profile.php?id=<?php echo $tampil['id_user'] ?>" class="nav-link text-white font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <!-- <span class="d-sm-inline d-none">Sign In</span> -->
+                <button class="btn btn-dark">Account Settings</button>
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -206,14 +210,14 @@ if(!isset($_SESSION['user'])){
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Jumlah<br> Buku</p>
-                    <!-- <h5 class="font-weight-bolder">
-                      $53,000
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Jumlah Buku</p>
+                     <h5 class="font-weight-bolder">
+                      <?php
+                      
+                      echo mysqli_num_rows(mysqli_query($conn, "SELECT * FROM buku"));
+                      ?>
                     </h5>
-                    <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+55%</span>
-                      since yesterday
-                    </p> -->
+                    
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -232,13 +236,13 @@ if(!isset($_SESSION['user'])){
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Jumlah Kategori</p>
-                    <!-- <h5 class="font-weight-bolder">
-                      2,300
+                    <h5 class="font-weight-bolder">
+                    <?php
+                      
+                      echo mysqli_num_rows(mysqli_query($conn, "SELECT * FROM kategori_buku"));
+                      ?>
                     </h5>
-                    <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+3%</span>
-                      since last week
-                    </p> -->
+                  
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -256,7 +260,7 @@ if(!isset($_SESSION['user'])){
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Buku <br>Dipinjam</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Buku Dipinjam</p>
                     <!-- <h5 class="font-weight-bolder">
                       +3,462
                     </h5>

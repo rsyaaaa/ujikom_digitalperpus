@@ -197,28 +197,31 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <a type="button" class="btn btn-outline-success" href="tambahpeminjam.php">TAMBAH STATUS PEMINJAMAN</a>
+              <a type="button" class="btn btn-outline-success" href="TAMBAH/tambahpeminjam.php">TAMBAH STATUS PEMINJAMAN</a>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
+               
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Buku</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Peminjaman</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Pengembalian</th>
-                      <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kategori Buku</th> -->
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status Buku</th>
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
                   <?php
                             include "../koneksi.php";
                             $no = 1;
-                             $sql ="SELECT * FROM peminjaman";
+                             $sql ="SELECT * FROM peminjaman LEFT JOIN user on user.id_user = peminjaman.id_user LEFT JOIN buku on buku.id_buku = peminjaman.id_buku";
                              $query = mysqli_query($conn, $sql);
          
-                             if ($pinjam =mysqli_fetch_array($query));
+                             while ($pinjam =mysqli_fetch_assoc($query)) {
+
+                             
                              ?>
                             
                             
@@ -228,13 +231,13 @@
                         <div class="d-flex px-2 py-1">
                           
                           <div class="d-flex flex-column justify-content-center">
-                          <h6><?php echo $pinjam['id_user']; ?> </h6>
+                          <h6><?php echo $pinjam['nama_lengkap']; ?> </h6>
                             
                           </div>
                         </div>
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0"><?php echo $pinjam['id_buku']; ?> </p>
+                        <p class="text-xs font-weight-bold mb-0"><?php echo $pinjam['judul']; ?> </p>
                        
                       </td>
                       <td class="align-middle text-center text-sm">
@@ -242,6 +245,9 @@
                       </td>
                       <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold"><?php echo $pinjam['tanggal_pengembalian']; ?> </span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $pinjam['status']; ?> </span>
                       </td>
                       <!-- <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold"></span>
@@ -260,7 +266,11 @@
                    
                     
                   </tbody>
+                  <?php
+                             }
+                             ?>
                 </table>
+                
               </div>
             </div>
           </div>

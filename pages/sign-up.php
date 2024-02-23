@@ -94,7 +94,7 @@
                   $nomor_telepon =$_POST['NOMORTELP'];
                   $level =$_POST['level'];
                   
-                  $insert =mysqli_query($conn,"INSERT INTO user (username, password, email, nama_lengkap, alamat, nomor_telepon, level) VALUES ('$username', '$password', '$email', '$namalengkap', '$alamat', '$nomor_telepon', '$level')");
+                  $insert =mysqli_query($conn,"INSERT INTO user (username, password, email, nama_lengkap, alamat, nomor_telepon, user_level) VALUES ('$username', '$password', '$email', '$namalengkap', '$alamat', '$nomor_telepon', '$level')");
                 if($insert){
                   echo '<script>alert("Akun berhasil dibuat, anda akan diarahkan ke menu login!"); location.href="sign-in.php";</script>';
                 }else {

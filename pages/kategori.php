@@ -197,14 +197,14 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <a type="button" class="btn btn-outline-success" href="tambahkategoribuku.php">TAMBAH KATEGORI BUKU</a>
+              <a type="button" class="btn btn-outline-success" href="TAMBAH/tambahkategoribuku.php">TAMBAH KATEGORI BUKU</a>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nomor</th>
+                      
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Kategori</th>
                      <th class="text-secondary opacity-7"></th>
                     </tr>
@@ -215,7 +215,7 @@
                              $sql ="SELECT * FROM kategori_buku";
                              $query = mysqli_query($conn, $sql);
          
-                             if ($buku =mysqli_fetch_array($query));
+                             while ($kategori =mysqli_fetch_assoc($query)){
                              ?>
                             
                             
@@ -225,22 +225,26 @@
                           <td>
                         <div class="d-flex px-2 py-1">
                           
-                          <div class="d-flex flex-column justify-content-center">
-                          <h6><?php echo $buku['id_kategori']; ?> </h6>
+                          <div class="d-flex flex-column">
+                          <td>
+                        
+                          <p class="font-weight-bold mb-0"><?php echo $kategori['nama_kategori']; ?></p>
+                      </td>
+                          
                             
                           </div>
                         </div>
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0"><?php echo $buku['nama_kategori']; ?></p>
+                        
                        
                       </td>
                       <td class="align-right">
-                        <a href="editkategori.php" type="button" class="font-weight-bold text-xs btn btn-warning" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="../pages/EDIT/editkategori.php?id=<?php echo $kategori['id_kategori'] ?>" type="button" class="font-weight-bold text-xs btn btn-warning" data-toggle="tooltip" data-original-title="Edit user">
                           
                           Edit
                         </a>
-                        <a href="hapuskategoribuku.php" type="button" class=" btn btn-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="../pages/HAPUS/hapuskategoribuku.php?id=<?php echo $kategori['id_kategori'] ?>" type="button" class=" btn btn-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                           Hapus
                       </td>
                       <!-- <td class="align-middle">
@@ -251,7 +255,11 @@
                    
                     
                   </tbody>
+                  <?php
+                             }
+                             ?>
                 </table>
+               
               </div>
             </div>
           </div>

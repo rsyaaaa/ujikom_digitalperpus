@@ -6,20 +6,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <title>
-   TAMBAH STATUS PEMINJAM
+   Tambah Buku
   </title>
   <!--     Fonts and icons     -->
   <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" /> -->
   <!-- Nucleo Icons -->
-  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href=".././assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <!-- <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script> -->
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
-  <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+  <link id="pagestyle" href="../../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
 </aside>
   </div>
@@ -29,54 +29,68 @@
           <div class="card">
             <div class="card-header pb-0">
               <div class="d-flex align-items-center">
-                <p class="mb-0">TAMBAH STATUS PEMINJAMAN</p>
+                <p class="mb-0">TAMBAH BUKU</p>
                 
               </div>
             </div>
             <?php
-            include "../koneksi.php";
-                if (isset($_POST['tambahpinjam'])){
-                  $user =$_POST['user'];
-                  $buku =$_POST['buku'];
-                  $tanggalpinjam=$_POST['tanggalpinjam'];
-                  
-                  
-                  
-                  $insert =mysqli_query($conn, "INSERT INTO peminjaman (id_user, id_buku, tanggal_peminjaman) VALUES ('$user', '$buku', '$tanggalpinjam')");
+            include "../../koneksi.php";
+                if (isset($_POST['tambahbuku'])){
+                  $judul =$_POST['judul'];
+                  $penulis =$_POST['penulis'];
+                  $penerbit=$_POST['penerbit'];
+                  $tahun_terbit=$_POST['tahun_terbit'];
+                 
+                  $insert =mysqli_query($conn, "INSERT INTO buku (judul, penulis, penerbit, tahun_terbit) VALUES ('$judul', '$penulis', '$penerbit', '$tahun_terbit')");
                   if($insert){
-                    echo '<script>alert("Peminjaman telah berhasil dibuat"); location.href="peminjam.php";</script>';
+                    echo '<script>alert("Buku Berhasil Ditambah!"); location.href="../buku.php";</script>';
                   }else{
-                  echo'<script>alert("Peminjaman gagal dibuat!");</script>';
+                  echo'<script>alert("Buku Gagal Ditambah!");</script>';
                 }
               }
-                ?>
+              ?>
+                  
+                 
+                 
+                  
+                  
+                  
+               
             <form method="post">
             <div class="card-body">
               <!-- <p class="text-uppercase text-sm">User Information</p> -->
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label" >User</label>
-                    <input class="form-control" type="text" name="user">
+                    <label for="example-text-input" class="form-control-label" >Judul Buku</label>
+                    <input class="form-control" type="text" name="judul">
                   </div>
+                </div>
+                <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label" >Buku</label>
-                    <input class="form-control" type="text" name="buku">
+                    <label for="example-text-input" class="form-control-label" >Penulis Buku</label>
+                    <input class="form-control" type="text" name="penulis">
                   </div>
+                </div>
+                <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label" >Tanggal Peminjaman</label>
-                    <input class="form-control" type="date" name="tanggalpinjam">
+                    <label for="example-text-input" class="form-control-label">Penerbit Buku</label>
+                    <input class="form-control" type="text"  name="penerbit">
                   </div>
-                  
-                
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Tahun Terbit</label>
+                    <input class="form-control" type="text"  name="tahun_terbit">
+                  </div>
+                </div>
                 
 
                   </div>
                 </div>
                 <div class="text-center">
-                      <button type="submit" name='tambahpinjam' class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">TAMBAH STATUS PEMINJAMAN</button>
+                      <button type="submit" name='tambahbuku' class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">TAMBAH BUKU</button>
                     </div>
-                    
               </div>
             </form>
               <hr class="horizontal dark">
@@ -178,7 +192,7 @@
   <!-- Github buttons -->
   <!-- <script async defer src="https://buttons.github.io/buttons.js"></script> -->
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+  <script src="../../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 </body>
 
 </html>
