@@ -97,7 +97,7 @@ $tampil =mysqli_fetch_array($query);
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
             <li class="breadcrumb-item text-sm text-white active" aria-current="page">Dashboard</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Anda Login Sebagai<br> <?php echo $tampil['nama_lengkap'] ?></h6>
+          <h6 class="font-weight-bolder text-white mb-0">Anda Login Sebagai<br><i><b><?php echo $tampil['nama_lengkap'] ?> ( <?php echo $tampil['user_level'] ?> )</b></i> </h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -254,20 +254,14 @@ $tampil =mysqli_fetch_array($query);
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <!-- <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Buku Dipinjam</p>
-                    <!-- <h5 class="font-weight-bolder">
-                      +3,462
-                    </h5>
-                    <p class="mb-0">
-                      <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                      since last quarter
-                    </p> -->
+                   
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -279,20 +273,15 @@ $tampil =mysqli_fetch_array($query);
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-xl-3 col-sm-6">
+        </div> --> -->
+        <!-- <div class="col-xl-3 col-sm-6">
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Buku Dikembalikan</p>
-                    <!-- <h5 class="font-weight-bolder">
-                      
-                    </h5> -->
-                    <!-- <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+5%</span> than last month
-                    </p> -->
+                    
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -307,7 +296,7 @@ $tampil =mysqli_fetch_array($query);
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       
         <!-- <div class="col-lg-5">
           <div class="card card-carousel overflow-hidden h-100 p-0">

@@ -249,7 +249,7 @@
                     </a>
                 </td>
                 <td class="">
-                    <a href="./pages/HAPUS/hapusbuku.php?id=<?php echo $buku['id_buku'] ?>" type="button" class="font-weight-bold text-xs btn btn-danger" data-toggle="tooltip" data-original-title="Edit user">
+                    <a href="../pages/HAPUS/hapusbuku.php?id=<?php echo $buku['id_buku'] ?>" type="button" class="font-weight-bold text-xs btn btn-danger" data-toggle="tooltip" data-original-title="Edit user">
                         Hapus
                     </a>
                 </td>

@@ -252,13 +252,13 @@
                       <!-- <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold"></span>
                       </td> -->
-                      <td class="align-middle">
+                      <!-- <td class="align-middle">
                         <a href="" type="button" class=" font-weight-bold text-xs btn btn-warning" data-toggle="tooltip" data-original-title="Edit user">
                           Edit
                         </a>
-                      </td>
+                      </td> -->
                       <td class="">
-                        <a href="" type="button" class="font-weight-bold text-xs btn btn-danger" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="../pages/HAPUS/hapuspeminjaman.php?id=<?php echo $pinjam['id_peminjaman'] ?>" type="button" class="font-weight-bold text-xs btn btn-danger" data-toggle="tooltip" data-original-title="Edit user">
                           Hapus
                         </a>
                       </td>

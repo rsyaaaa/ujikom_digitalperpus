@@ -36,12 +36,14 @@
             <?php
             include "../../koneksi.php";
                 if (isset($_POST['tambahbuku'])){
+                  $id_kategori=$_POST['kategori'];
                   $judul =$_POST['judul'];
                   $penulis =$_POST['penulis'];
                   $penerbit=$_POST['penerbit'];
                   $tahun_terbit=$_POST['tahun_terbit'];
+                  
                  
-                  $insert =mysqli_query($conn, "INSERT INTO buku (judul, penulis, penerbit, tahun_terbit) VALUES ('$judul', '$penulis', '$penerbit', '$tahun_terbit')");
+                  $insert =mysqli_query($conn, "INSERT INTO buku (id_kategori, judul, penulis, penerbit, tahun_terbit) VALUES ('$id_kategori', '$judul', '$penulis', '$penerbit', '$tahun_terbit')");
                   if($insert){
                     echo '<script>alert("Buku Berhasil Ditambah!"); location.href="../buku.php";</script>';
                   }else{
@@ -51,7 +53,7 @@
               ?>
                   
                  
-                 
+             
                   
                   
                   
@@ -84,6 +86,36 @@
                     <input class="form-control" type="text"  name="tahun_terbit">
                   </div>
                 </div>
+                <div class="col-md-6">
+                
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Kategori Buku</label>
+                    <select name="kategori"  class="form-select" >
+                    <?php 
+              
+              
+
+
+
+              
+              $sql ="SELECT * FROM kategori_buku";
+              $query = mysqli_query($conn, $sql);
+
+               $tampilin =($query);
+               while ($tampilin = mysqli_fetch_assoc($query)) {
+
+
+
+              ?>
+                    <option value=<?php echo $tampilin['id_kategori']; ?> ><?php echo $tampilin['nama_kategori'] ; ?></option>
+                    <?php
+               }
+               ?>
+                    
+                  </select>
+                  </div>
+                </div>
+                
                 
 
                   </div>

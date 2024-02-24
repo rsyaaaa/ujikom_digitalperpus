@@ -39,12 +39,13 @@
                   $user =$_POST['user'];
                   $buku =$_POST['buku'];
                   $tanggalpinjam=$_POST['tanggalpinjam'];
+                  $status =$_POST['status'];
                   
                   
                   
-                  $insert =mysqli_query($conn, "INSERT INTO peminjaman (id_user, id_buku, tanggal_peminjaman) VALUES ('$user', '$buku', '$tanggalpinjam')");
+                  $insert =mysqli_query($conn, "INSERT INTO peminjaman (id_user, id_buku, tanggal_peminjaman, status) VALUES ('$user', '$buku', '$tanggalpinjam', '$status')");
                   if($insert){
-                    echo '<script>alert("Peminjaman telah berhasil dibuat"); location.href="../peminjam.php";</script>';
+                    echo '<script>alert("Peminjaman telah berhasil dibuat"); location.href="../peminjaman.php";</script>';
                   }else{
                   echo'<script>alert("Peminjaman gagal dibuat!");</script>';
                 }
@@ -54,18 +55,60 @@
             <div class="card-body">
               <!-- <p class="text-uppercase text-sm">User Information</p> -->
               <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label" >User</label>
-                    <input class="form-control" type="text" name="user">
-                  </div>
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label" >Buku</label>
-                    <input class="form-control" type="text" name="buku">
+              <div class="col-md-6">
+                
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">User</label>
+                  <select name="user"  class="form-select" >
+                  <?php 
+            
+            
+
+
+
+            
+            $sql_user ="SELECT * FROM user";
+            $sql_buku ="SELECT * FROM buku";
+            $query_user = mysqli_query($conn, $sql_user);
+            $query_buku = mysqli_query($conn, $sql_buku);
+
+             $tampilin_user =($query_user);
+             $tampilinbuku =($query_buku);
+             while ($tampilin_user = mysqli_fetch_assoc($query_user)) {
+
+
+
+            ?>
+                  <option value=<?php echo $tampilin_user['id_user']; ?> ><?php echo $tampilin_user['nama_lengkap'] ; ?></option>
+                  <?php
+             }
+             ?>
+                  
+                </select>
+                </div>
+              </div>
+              <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">Buku</label>
+                  <select name="buku"  class="form-select" >
+                      <?php 
+                      while ($tampilin_buku = mysqli_fetch_assoc($query_buku)) {
+                      ?>
+                    <option value=<?php echo $tampilin_buku['id_buku']; ?> ><?php echo $tampilin_buku['judul'] ; ?></option>
+                    <?php
+             }
+             ?>
+                    </select>
                   </div>
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label" >Tanggal Peminjaman</label>
                     <input class="form-control" type="date" name="tanggalpinjam">
+                  </div>
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label" >Status Buku</label>
+                   <select name="status" class="form-select">
+                        <option value="DIPINJAM">DIPINJAM</option>
+                        <option value="DIKEMBALIKAN">DIKEMBALIKAN</option>
+                   </select>
                   </div>
                   
                 

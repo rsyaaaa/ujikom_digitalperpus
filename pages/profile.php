@@ -17,7 +17,7 @@
                   
                   $insert =mysqli_query($conn, "UPDATE user SET username='$username',password='$password',email='$email',nama_lengkap='$nama_lengkap', alamat='$alamat', nomor_telepon='$nomor_telepon' WHERE id_user='$id'");
                   if($insert){
-                    echo '<script>alert("Akun Berhasil Dirubah!");</script>';
+                   ;
                   }else{
                   echo'<script>alert("Akun gagal dirubah");</script>';
                 }
@@ -247,6 +247,9 @@
               </h5>
               <p class="mb-0 font-weight-bold text-sm">
               <?php echo $tampil['nama_lengkap'] ?>
+              </p>
+              <p class="mb-0 font-weight-bold text-sm"> User Level : 
+              <?php echo $tampil['user_level'] ?>
               </p>
             </div>
           </div>
